@@ -1,32 +1,35 @@
-import { useQuery, gql } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 
-const EXCHANGE_RATES = gql`
-	query GetExchangeRates {
-		rates(currency: "USD") {
-			currency
-			rate
+import './Dogs.css'
+
+const GET_DOGS = gql`
+	query GetDogs {
+		dogs {
+			id
+			breed
 		}
 	}
 `
 
+function Dogs({ onSelect }) {
+	const { data, error, loading } = useQuery(GET_DOGS)
 
-function ExchangeRates({ onSelect }) {
-	const { data, error, loading } = useQuery(EXCHANGE_RATES)
+	if (loading) return 'Loading...'
+	if (error) return `Error: ${error.message || 'there was a problem retrieving dogs'}`
 
-	if (loading) return <p>Loading...</p>
-	if (error) return <p>Error: {error}</p>
-
-	return data.rates.map((exchange) => {
-		const { currency, rate } = exchange
-
-		return (
-			<div key={currency}>
-				<button onClick={(_) => onSelect({ currency, rate }) }>
-					{currency}: {rate}
-				</button>
-			</div>
-		)
-	})
+	return (
+		<div className="dogs">
+			<select name="dog" onChange={onSelect}>
+				{
+					data.dogs.map(dog => (
+						<option key={dog.id} value={dog.breed}>
+							{dog.breed}
+						</option>
+					))
+				}
+			</select>
+		</div>
+	)
 }
 
-export default ExchangeRates
+export default Dogs
