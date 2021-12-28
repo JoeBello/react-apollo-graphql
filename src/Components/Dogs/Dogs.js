@@ -9,9 +9,7 @@ const EXCHANGE_RATES = gql`
 	}
 `
 
-// formik and yum
-// graphql
-// nx
+
 function ExchangeRates({ onSelect }) {
 	const { data, error, loading } = useQuery(EXCHANGE_RATES)
 
