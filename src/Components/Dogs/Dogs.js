@@ -20,7 +20,7 @@ function Dogs({ onSelect }) {
 	return (
 		<div className="dogs">
 			<select name="dog" onChange={onSelect}>
-				<option key={0} value={null}>Select...</option>
+				<option key={0} value="default">Select...</option>
 				{
 					data.dogs.map(dog => (
 						<option key={dog.id} value={dog.breed}>

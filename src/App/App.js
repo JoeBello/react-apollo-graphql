@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import './App.css';
-import { Dogs, DogPhoto } from '../Components';
+import { Dogs, DogPhoto, DogPhotoLazy } from '../Components';
 
 function App() {
 	const [selected, setSelected] = useState(null)
@@ -16,7 +16,8 @@ function App() {
 			</header>
 			<main>
 				<Dogs onSelect={onSetSelected}/>
-				{selected && <DogPhoto breed={selected?.target?.value} />}
+				<DogPhotoLazy breed={selected?.target?.value} />
+				{/* {selected && <DogPhoto breed={selected?.target?.value} />} */}
 			</main>
 		</div>
 	);
