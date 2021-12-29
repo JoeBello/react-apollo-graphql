@@ -13,6 +13,7 @@ const GET_DOG_PHOTO = gql`
 
 function DogPhoto({ breed }) {
 	const { data, error, loading, networkStatus, refetch } = useQuery(GET_DOG_PHOTO, {
+		fetchPolicy: 'cache-first',
 		notifyOnNetworkStatusChange: true,
 		variables: { breed }
 	})
