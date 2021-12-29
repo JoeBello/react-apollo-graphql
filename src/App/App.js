@@ -1,10 +1,7 @@
-import { useState } from 'react'
-
 import './App.css';
 import { Dogs } from '../Components'
 
 function App() {
-	const [selected, setSelected] = useState(null)
 
 	return (
 		<div className="App">
