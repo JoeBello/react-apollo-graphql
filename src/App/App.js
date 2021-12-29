@@ -16,7 +16,7 @@ function App() {
 			</header>
 			<main>
 				<Dogs onSelect={onSetSelected}/>
-				<DogPhoto breed={selected?.target?.value} />
+				{selected && <DogPhoto breed={selected?.target?.value} />}
 			</main>
 		</div>
 	);
